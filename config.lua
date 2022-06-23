@@ -79,7 +79,7 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true 
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -163,21 +163,60 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
+  -- VSCode theme
   { "martinsione/darkplus.nvim" },
+
+  -- Neovim motions on speed!
   {
     "phaazon/hop.nvim",
-    branch = "v1",
-    require 'hop'.setup {}
+    branch = "v1"
   },
-  {
-    "walialu/AutoRemoteSync.nvim"
-  }
-  --     {"folke/tokyonight.nvim"},
-  --     {
-  --       "folke/trouble.nvim",
-  --       cmd = "TroubleToggle",
-  --     },
+
+  -- Auto upload files to remote on save
+  { "walialu/AutoRemoteSync.nvim" },
+
+  -- Better jump to line
+  { "nacro90/numb.nvim" },
+
+  -- Colered parentheses like VSCode
+  { "p00f/nvim-ts-rainbow" },
+
+  -- Hint for function signatures when you type
+  { "ray-x/lsp_signature.nvim" },
+
+  -- Preview markdown on neovim (requires Glow binary)
+  { "ellisonleao/glow.nvim" },
+
+  -- Show indentation lines like VSCode
+  { "lukas-reineke/indent-blankline.nvim" },
+
+
+  -- Highlight TODOs
+  { "folke/todo-comments.nvim" },
+
+  -- Mappings to delete, change and add surroundings
+  { 'tpope/vim-surround' }
 }
+
+-- Plugin configuration
+require 'hop'.setup {}
+require 'numb'.setup {}
+require 'nvim-treesitter.configs'.setup{
+  highlight = {
+
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil
+  }
+}
+require 'lsp_signature'.setup {}
+require 'indent_blankline'.setup {
+  show_current_context = true,
+  show_current_context_start = true
+}
+require 'todo-comments'.setup {}
 
 -- }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
