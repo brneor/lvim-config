@@ -24,6 +24,7 @@ vim.opt.clipboard = "unnamedplus"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<Leader>gg"] = ":LazyGit<CR>"
 -- hop shortcuts:
 vim.api.nvim_set_keymap('', 's', "<cmd>lua require'hop'.hint_char2()<cr>", {})
 vim.api.nvim_set_keymap('', 'l', " <cmd>lua require'hop'.hint_lines()<cr>", {})
@@ -195,7 +196,13 @@ lvim.plugins = {
   { "folke/todo-comments.nvim" },
 
   -- Mappings to delete, change and add surroundings
-  { 'tpope/vim-surround' }
+  { "tpope/vim-surround" },
+
+  -- Inline git blame
+  { "f-person/git-blame.nvim" },
+
+  -- Calls lazygit from Neovim (requires lazygit binary)
+  { "kdheepak/lazygit.nvim" }
 }
 
 -- Plugin configuration
