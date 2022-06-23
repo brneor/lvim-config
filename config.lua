@@ -199,7 +199,11 @@ lvim.plugins = {
 }
 
 -- Plugin configuration
-require 'hop'.setup {}
+require 'hop'.setup {
+  keys = 'tnplvmsefucriwyxaoqz',
+  jump_on_sole_occurrence = false,
+  multi_windows = true
+}
 require 'numb'.setup {}
 require 'nvim-treesitter.configs'.setup{
   highlight = {
