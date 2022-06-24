@@ -28,13 +28,16 @@ lvim.keys.normal_mode["<Leader>gg"] = ":LazyGit<CR>"
 -- hop shortcuts:
 vim.api.nvim_set_keymap('', 's', "<cmd>lua require'hop'.hint_char2()<cr>", {})
 vim.api.nvim_set_keymap('', 'l', " <cmd>lua require'hop'.hint_lines()<cr>", {})
-vim.api.nvim_set_keymap('', '<Leader>tw', "<cmd>lua require'hop'.hint_words()<cr>", {})
-vim.api.nvim_set_keymap('', '<Leader>tr', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
+vim.api.nvim_set_keymap('', '<Leader>a', "<cmd>lua require'hop'.hint_words()<cr>", {})
+vim.api.nvim_set_keymap('', '<Leader>r', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
 vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
 vim.api.nvim_set_keymap('', 'F', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
 vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
 vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
 --
+
+vim.g.vim_matchtag_enable_by_default = 1
+vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
 
 require('luasnip.loaders.from_vscode').load({ paths = { "/home/brenoperes/.config/lvim/snippets" }})
 
@@ -191,7 +194,6 @@ lvim.plugins = {
   -- Show indentation lines like VSCode
   { "lukas-reineke/indent-blankline.nvim" },
 
-
   -- Highlight TODOs
   { "folke/todo-comments.nvim" },
 
@@ -202,13 +204,15 @@ lvim.plugins = {
   { "f-person/git-blame.nvim" },
 
   -- Calls lazygit from Neovim (requires lazygit binary)
-  { "kdheepak/lazygit.nvim" }
+  { "kdheepak/lazygit.nvim" },
+
+  -- Highlights matching html tags
+  { "leafOfTree/vim-matchtag" }
 }
 
 -- Plugin configuration
 require 'hop'.setup {
   keys = 'tnplvmsefucriwyxaoqz',
-  jump_on_sole_occurrence = false,
   multi_windows = true
 }
 require 'numb'.setup {}
