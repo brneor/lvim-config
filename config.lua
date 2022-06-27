@@ -207,7 +207,15 @@ lvim.plugins = {
   { "kdheepak/lazygit.nvim" },
 
   -- Highlights matching html tags
-  { "leafOfTree/vim-matchtag" }
+  { "leafOfTree/vim-matchtag" },
+
+  -- Minimap (requires code-minimap binary which can be installed with cargo )
+  { "wfxr/minimap.vim" },
+
+  -- Color highlighter
+  { "norcalli/nvim-colorizer.lua" },
+
+  { "ethanholz/nvim-lastplace" }
 }
 
 -- Plugin configuration
@@ -232,6 +240,15 @@ require 'indent_blankline'.setup {
   show_current_context_start = true
 }
 require 'todo-comments'.setup {}
+-- Minimap settings
+vim.cmd ("let g:minimap_width = 10")
+vim.cmd ("let g:minimap_auto_start = 1")
+vim.cmd ("let g:minimap_auto_start_win_enter = 1")
+vim.cmd ("let g:minimap_git_colors = 1")
+vim.cmd ("let g:minimap_highlight_range = 1")
+vim.cmd ("let g:minimap_highlight_search = 1")
+vim.cmd ("let g:minimap_close_buftypes = ['nofile', 'nowrite', 'terminal', 'prompt']")
+require 'colorizer'.setup {}
 
 -- }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
