@@ -252,11 +252,11 @@ end
 local autocmds = {
   general = {
     { { 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' }, {
-      pattern = "*",
+      pattern = "*.*",
       command = "set nornu"
     } },
     { { 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
-      pattern = "*",
+      pattern = "*.*",
       command = "set rnu"
     } }
   }
