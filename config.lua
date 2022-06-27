@@ -97,7 +97,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "tsx",
   "css",
   "perl",
-  "sass",
+  "scss",
   "rust",
   "yaml",
 }
