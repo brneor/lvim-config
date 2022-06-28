@@ -11,7 +11,8 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "darkplus"
+lvim.colorscheme = "onedarker"
+-- lvim.colorscheme = "darkplus"
 
 -- vim options
 vim.opt.relativenumber = true
@@ -24,16 +25,17 @@ vim.opt.clipboard = "unnamedplus"
 lvim.leader = "space"
 -- add your own keymapping
 -- hop shortcuts:
-vim.api.nvim_set_keymap('', 's', "<cmd>lua require'hop'.hint_char2()<cr>", {})
-vim.api.nvim_set_keymap('', 'l', "<cmd>lua require'hop'.hint_lines()<cr>", {})
-vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('', 'F', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
-vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
+vim.api.nvim_set_keymap('n', 's', "<cmd>lua require'hop'.hint_char2()<cr>", {})
+vim.api.nvim_set_keymap('n', 'l', "<cmd>lua require'hop'.hint_lines()<cr>", {})
+vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+vim.api.nvim_set_keymap('n', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
+vim.api.nvim_set_keymap('n', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
 lvim.builtin.which_key.mappings["a"] = { "<cmd>HopWord<cr>", "Hop to word" }
 lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern" }
 --
 lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
+lvim.builtin.which_key.mappings["o"] = {"<cmd>RnvimrToggle<cr>", "File manager"}
 
 vim.g.vim_matchtag_enable_by_default = 1
 vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
@@ -215,7 +217,10 @@ lvim.plugins = {
   -- Color highlighter
   { "norcalli/nvim-colorizer.lua" },
 
-  { "ethanholz/nvim-lastplace" }
+  { "ethanholz/nvim-lastplace" },
+
+  -- Uses ranger inside neovim (obviously requires ranger)
+  { "kevinhwang91/rnvimr" }
 }
 
 -- Plugin configuration
