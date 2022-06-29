@@ -198,18 +198,19 @@ lvim.plugins = {
   -- Neovim motions on speed!
   {
     "phaazon/hop.nvim",
+    branch = "v1",
     event = "BufRead",
     config = function ()
       require("hop").setup {
         keys = 'tnplvmsefucriwyxaoqz',
         multi_windows = true
       }
-      vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-      vim.api.nvim_set_keymap('n', 'l', ":HopLine<cr>", { silent = true })
-      vim.api.nvim_set_keymap('n', 'f', ":HopWordCurrentLineAC<cr>", { silent = true })
-      vim.api.nvim_set_keymap('n', 'F', ":HopWordCurrentLineBC<cr>", { silent = true })
-      vim.api.nvim_set_keymap("n", "t", ":HopChar1CurrentLineAC<cr>", { silent = true })
-      vim.api.nvim_set_keymap("n", "T", ":HopChar1CurrentLineBC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", "s", "<cmd>HopChar2<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", 'l', "<cmd>HopLine<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", 'f', "<cmd>HopWordCurrentLineAC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", 'F', "<cmd>HopWordCurrentLineBC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", "t", "<cmd>HopChar1CurrentLineAC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", "T", "<cmd>HopChar1CurrentLineBC<cr>", { silent = true })
     end,
   },
 
