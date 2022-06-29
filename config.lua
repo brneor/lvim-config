@@ -24,16 +24,9 @@ vim.opt.clipboard = "unnamedplus"
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
--- hop shortcuts:
-vim.api.nvim_set_keymap('n', 's', "<cmd>lua require'hop'.hint_char2()<cr>", {})
-vim.api.nvim_set_keymap('n', 'l', "<cmd>lua require'hop'.hint_lines()<cr>", {})
-vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('n', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
-vim.api.nvim_set_keymap('n', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
 lvim.builtin.which_key.mappings["a"] = { "<cmd>HopWord<cr>", "Hop to word" }
 lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern" }
---
+
 lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
 lvim.builtin.which_key.mappings["o"] = {"<cmd>RnvimrToggle<cr>", "File manager"}
 
@@ -198,29 +191,98 @@ lvim.plugins = {
   -- Neovim motions on speed!
   {
     "phaazon/hop.nvim",
-    branch = "v1"
+    event = "BufRead",
+    config = function ()
+      require("hop").setup {
+        keys = 'tnplvmsefucriwyxaoqz',
+        multi_windows = true
+      }
+      vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+      vim.api.nvim_set_keymap('n', 'l', ":HopLine<cr>", { silent = true })
+      vim.api.nvim_set_keymap('n', 'f', ":HopWordCurrentLineAc<cr>", { silent = true })
+      vim.api.nvim_set_keymap('n', 'F', ":HopWordCurrentLineBC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("n", "t", ":HopChar1CurrentLineAC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("n", "T", ":HopChar1CurrentLineBC<cr>", { silent = true })
+    end,
   },
 
   -- Auto upload files to remote on save
   { "walialu/AutoRemoteSync.nvim" },
 
+  -- Minimap (requires code-minimap binary which can be installed with cargo )
+  {
+    "wfxr/minimap.vim",
+    run = "cargo install --locked code-minimap",
+    config = function ()
+      vim.cmd ("let g:minimap_width = 10")
+      vim.cmd ("let g:minimap_auto_start = 1")
+      vim.cmd ("let g:minimap_auto_start_win_enter = 1")
+      vim.cmd ("let g:minimap_git_colors = 1")
+      vim.cmd ("let g:minimap_highlight_range = 1")
+      vim.cmd ("let g:minimap_highlight_search = 1")
+      vim.cmd ("let g:minimap_close_buftypes = ['nofile', 'nowrite', 'terminal', 'prompt']")
+    end,
+  },
+
   -- Better jump to line
-  { "nacro90/numb.nvim" },
+  {
+    "nacro90/numb.nvim",
+    event = "BufRead",
+    config = function ()
+      require("numb").setup {
+        show_numbes = true,
+        show_cursorline = true,
+      }
+    end,
+  },
+
+  -- Uses ranger inside neovim (obviously requires ranger)
+  {
+    "kevinhwang91/rnvimr",
+    cmd = "RnvimrToggle",
+    config = function ()
+      vim.g.rnvimr_draw_border = 1
+      vim.g.rnvimr_pick_enable = 1
+      vim.g.rnvimr_bw_enable = 1
+    end,
+  },
 
   -- Colered parentheses like VSCode
   { "p00f/nvim-ts-rainbow" },
 
   -- Hint for function signatures when you type
-  { "ray-x/lsp_signature.nvim" },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function() require"lsp_signature".on_attach() end,
+  },
 
   -- Preview markdown on neovim (requires Glow binary)
   { "ellisonleao/glow.nvim" },
 
   -- Show indentation lines like VSCode
-  { "lukas-reineke/indent-blankline.nvim" },
+  -- { "lukas-reineke/indent-blankline.nvim" },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
+    setup = function()
+      vim.g.indentLine_enabled = 1
+      vim.g.indent_blankline_char = "▏"
+      vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
+      vim.g.indent_blankline_buftype_exclude = {"terminal"}
+      vim.g.indent_blankline_show_trailing_blankline_indent = true
+      vim.g.indent_blankline_show_first_indent_level = true
+    end
+  },
 
   -- Highlight TODOs
-  { "folke/todo-comments.nvim" },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function ()
+      require("todo-comments").setup()
+    end
+  },
 
   -- Mappings to delete, change and add surroundings
   { "tpope/vim-surround" },
@@ -234,24 +296,25 @@ lvim.plugins = {
   -- Highlights matching html tags
   { "leafOfTree/vim-matchtag" },
 
-  -- Minimap (requires code-minimap binary which can be installed with cargo )
-  { "wfxr/minimap.vim" },
-
   -- Color highlighter
-  { "norcalli/nvim-colorizer.lua" },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function ()
+      require("colorizer").setup({ "*" }, {
+        RGB = true,
+        RRGGBB = true,
+        RRGGBBAA = true,
+        rgb_fn = true,
+        hsl_fn = true,
+        css = true,
+        css_fn = true
+      })
+    end,
+  },
 
-  { "ethanholz/nvim-lastplace" },
-
-  -- Uses ranger inside neovim (obviously requires ranger)
-  { "kevinhwang91/rnvimr" }
+  { "ethanholz/nvim-lastplace" }
 }
 
--- Plugin configuration
-require 'hop'.setup {
-  keys = 'tnplvmsefucriwyxaoqz',
-  multi_windows = true
-}
-require 'numb'.setup {}
 require 'nvim-treesitter.configs'.setup{
   highlight = {
 
@@ -262,21 +325,6 @@ require 'nvim-treesitter.configs'.setup{
     max_file_lines = nil
   }
 }
-require 'lsp_signature'.setup {}
-require 'indent_blankline'.setup {
-  show_current_context = true,
-  show_current_context_start = true
-}
-require 'todo-comments'.setup {}
--- Minimap settings
-vim.cmd ("let g:minimap_width = 10")
-vim.cmd ("let g:minimap_auto_start = 1")
-vim.cmd ("let g:minimap_auto_start_win_enter = 1")
-vim.cmd ("let g:minimap_git_colors = 1")
-vim.cmd ("let g:minimap_highlight_range = 1")
-vim.cmd ("let g:minimap_highlight_search = 1")
-vim.cmd ("let g:minimap_close_buftypes = ['nofile', 'nowrite', 'terminal', 'prompt']")
-require 'colorizer'.setup {}
 
 -- }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
