@@ -132,8 +132,7 @@ local emmet_options = {
     "javascriptreact",
     "xml",
     "css",
-    "scss",
-    "perl"
+    "scss"
   },
   root_dir = function ()
     return vim.loop.cwd()
