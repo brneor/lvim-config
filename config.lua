@@ -33,8 +33,6 @@ lvim.builtin.which_key.mappings["o"] = {"<cmd>RnvimrToggle<cr>", "File manager"}
 vim.g.vim_matchtag_enable_by_default = 1
 vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
 
-require('luasnip.loaders.from_vscode').load({ paths = { "/home/brenoperes/.config/lvim/snippets" }})
-
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -78,6 +76,16 @@ lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+
+-- Statusline config
+lvim.builtin.lualine.style = "lvim"
+local components = require("lvim.core.lualine.components")
+
+lvim.builtin.lualine.sections.lualine_a = { "mode" }
+lvim.builtin.lualine.sections.lualine_y = {
+  components.spaces,
+  components.location
+}
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -199,7 +207,7 @@ lvim.plugins = {
       }
       vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
       vim.api.nvim_set_keymap('n', 'l', ":HopLine<cr>", { silent = true })
-      vim.api.nvim_set_keymap('n', 'f', ":HopWordCurrentLineAc<cr>", { silent = true })
+      vim.api.nvim_set_keymap('n', 'f', ":HopWordCurrentLineAC<cr>", { silent = true })
       vim.api.nvim_set_keymap('n', 'F', ":HopWordCurrentLineBC<cr>", { silent = true })
       vim.api.nvim_set_keymap("n", "t", ":HopChar1CurrentLineAC<cr>", { silent = true })
       vim.api.nvim_set_keymap("n", "T", ":HopChar1CurrentLineBC<cr>", { silent = true })
@@ -244,6 +252,8 @@ lvim.plugins = {
       vim.g.rnvimr_draw_border = 1
       vim.g.rnvimr_pick_enable = 1
       vim.g.rnvimr_bw_enable = 1
+      vim.g.rnvimr_edit_cmd = "lvim"
+      vim.g.rnvimr_ranger_cmd = {"ranger", "--cmd=set draw_borders both"}
     end,
   },
 
