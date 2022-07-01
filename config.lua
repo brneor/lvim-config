@@ -27,7 +27,8 @@ lvim.leader = "space"
 lvim.builtin.which_key.mappings["a"] = { "<cmd>HopWord<cr>", "Hop to word" }
 lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern" }
 
-lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
+lvim.builtin.which_key.mappings["gz"] = {"<cmd>LazyGit<CR>", "LazyGit"}
+lvim.builtin.which_key.mappings["gg"] = {"<cmd>GitUi<CR>", "GitUi"}
 lvim.builtin.which_key.mappings["o"] = {"<cmd>RnvimrToggle<cr>", "File manager"}
 
 vim.g.vim_matchtag_enable_by_default = 1
@@ -303,6 +304,8 @@ lvim.plugins = {
   -- Calls lazygit from Neovim (requires lazygit binary)
   { "kdheepak/lazygit.nvim" },
 
+  -- Cals gitui from Neovim (requires gitui binary)
+  { "brneor/gitui.nvim" },
   -- Highlights matching html tags
   { "leafOfTree/vim-matchtag" },
 
