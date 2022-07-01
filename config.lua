@@ -312,7 +312,13 @@ lvim.plugins = {
   },
 
   -- Remembers the last cursor position on file
-  { "ethanholz/nvim-lastplace" }
+  { "ethanholz/nvim-lastplace" },
+
+  -- Multi cursor support
+  {
+    "mg979/vim-visual-multi",
+    branch = "master"
+  }
 }
 
 require 'nvim-treesitter.configs'.setup{
