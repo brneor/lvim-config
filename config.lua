@@ -325,6 +325,7 @@ lvim.plugins = {
     end,
   },
 
+  -- Remembers the last cursor position on file
   { "ethanholz/nvim-lastplace" }
 }
 
