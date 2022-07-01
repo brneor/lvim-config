@@ -218,21 +218,6 @@ lvim.plugins = {
   -- Auto upload files to remote on save
   { "walialu/AutoRemoteSync.nvim" },
 
-  -- Minimap (requires code-minimap binary which can be installed with cargo )
-  {
-    "wfxr/minimap.vim",
-    run = "cargo install --locked code-minimap",
-    config = function ()
-      vim.cmd ("let g:minimap_width = 10")
-      vim.cmd ("let g:minimap_auto_start = 1")
-      vim.cmd ("let g:minimap_auto_start_win_enter = 1")
-      vim.cmd ("let g:minimap_git_colors = 1")
-      vim.cmd ("let g:minimap_highlight_range = 1")
-      vim.cmd ("let g:minimap_highlight_search = 1")
-      vim.cmd ("let g:minimap_close_buftypes = ['nofile', 'nowrite', 'terminal', 'prompt']")
-    end,
-  },
-
   -- Better jump to line
   {
     "nacro90/numb.nvim",
