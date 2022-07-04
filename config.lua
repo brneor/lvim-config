@@ -30,6 +30,14 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern"
 lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
 -- lvim.builtin.which_key.mappings["gg"] = {"<cmd>GitUi<CR>", "GitUi"}
 
+-- vim-flutter keymappings
+lvim.builtin.which_key.mappings["u"] = {
+  name = "+Flutter",
+  a = { "<cmd>FlutterRun<cr>", "Run" },
+  q = { "<cmd>FlutterQuit<cr>", "Quit" },
+  r = { "<cmd>FlutterReload<cr>", "Reload" },
+  R = { "<cmd>FlutterRestart<cr>", "Restart" },
+}
 vim.g.vim_matchtag_enable_by_default = 1
 vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
 
@@ -309,7 +317,16 @@ lvim.plugins = {
   {
     "mg979/vim-visual-multi",
     branch = "master"
-  }
+  },
+
+  -- Flutter and dart support
+  {
+    "akinsho/flutter-tools.nvim",
+    config = function ()
+      require("flutter-tools").setup{}
+    end
+  },
+  { "dart-lang/dart-vim-plugin" }
 }
 
 require 'nvim-treesitter.configs'.setup{
