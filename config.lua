@@ -122,13 +122,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "perlnavigator" })
-local perl_opts = {
-  perlnavigator = {
-    includePaths = {"/home/central/scripts/app/hnetx/atual", "/home/central/scripts/app/hnetx/atual/lib"}
-  }
-} -- check the lspconfig documentation for a list of all possible options
-require("lvim.lsp.manager").setup("perlnavigator", perl_opts)
+require("private-config");
 
 -- Emmet everywhere (hopefuly)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
