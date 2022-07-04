@@ -306,9 +306,6 @@ lvim.plugins = {
     end,
   },
 
-  -- Remembers the last cursor position on file
-  { "ethanholz/nvim-lastplace" },
-
   -- Multi cursor support
   {
     "mg979/vim-visual-multi",
@@ -322,7 +319,22 @@ lvim.plugins = {
       require("flutter-tools").setup{}
     end
   },
-  { "dart-lang/dart-vim-plugin" }
+  { "dart-lang/dart-vim-plugin" },
+
+  -- Remembers last place on file
+  {
+		"ethanholz/nvim-lastplace",
+		event = "BufRead",
+		config = function()
+			require("nvim-lastplace").setup({
+				lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+				lastplace_ignore_filetype = {
+					"gitcommit", "gitrebase", "svn", "hgcommit",
+				},
+				lastplace_open_folds = true,
+			})
+		end,
+	}
 }
 
 require 'nvim-treesitter.configs'.setup{
