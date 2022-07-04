@@ -29,7 +29,6 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern"
 
 lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
 -- lvim.builtin.which_key.mappings["gg"] = {"<cmd>GitUi<CR>", "GitUi"}
-lvim.builtin.which_key.mappings["o"] = {"<cmd>RnvimrToggle<cr>", "File manager"}
 
 vim.g.vim_matchtag_enable_by_default = 1
 vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
@@ -115,9 +114,14 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
--- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
--- local opts = {} -- check the lspconfig documentation for a list of all possible options
--- require("lvim.lsp.manager").setup("pyright", opts)
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "perlnavigator" })
+local perl_opts = {
+  perlnavigator = {
+    includePaths = {"/home/central/scripts/app/hnetx/atual", "/home/central/scripts/app/hnetx/atual/lib"}
+  }
+} -- check the lspconfig documentation for a list of all possible options
+require("lvim.lsp.manager").setup("perlnavigator", perl_opts)
+
 -- Emmet everywhere (hopefuly)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -227,19 +231,6 @@ lvim.plugins = {
         show_numbes = true,
         show_cursorline = true,
       }
-    end,
-  },
-
-  -- Uses ranger inside neovim (obviously requires ranger)
-  {
-    "kevinhwang91/rnvimr",
-    cmd = "RnvimrToggle",
-    config = function ()
-      vim.g.rnvimr_draw_border = 1
-      vim.g.rnvimr_pick_enable = 1
-      vim.g.rnvimr_bw_enable = 1
-      vim.g.rnvimr_edit_cmd = "lvim"
-      vim.g.rnvimr_ranger_cmd = {"ranger", "--cmd=set draw_borders both"}
     end,
   },
 
