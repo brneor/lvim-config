@@ -137,13 +137,10 @@ local emmet_options = {
   capabilities = capabilities,
   filetypes = {
     "html",
-    "smarty",
     "typescript",
     "javascript",
     "javascriptreact",
     "xml",
-    "css",
-    "scss"
   },
   root_dir = function ()
     return vim.loop.cwd()
