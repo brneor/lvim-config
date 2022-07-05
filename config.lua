@@ -38,6 +38,12 @@ lvim.builtin.which_key.mappings["u"] = {
   r = { "<cmd>FlutterReload<cr>", "Reload" },
   R = { "<cmd>FlutterRestart<cr>", "Restart" },
 }
+
+-- Color picker keymappings
+vim.keymap.set("n", "<C-c>", "<cmd>PickColor<cr>", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-c>", "<cmd>PickColorInsert<cr>", { noremap = true, silent = true })
+
+-- Other vim settings
 vim.g.vim_matchtag_enable_by_default = 1
 vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
 
@@ -332,7 +338,23 @@ lvim.plugins = {
 				lastplace_open_folds = true,
 			})
 		end,
-	}
+	},
+
+  -- A nice color picker
+  {
+    "ziontee113/color-picker.nvim",
+    config = function ()
+      require("color-picker").setup({
+        ["keymap"] = {
+          ["<Right>"] = "<Plug>ColorPickerSlider1Increase",
+          ["<Left>"] = "<Plug>ColorPickerSlider1Decrease",
+          ["<End>"] = "<Plug>ColorPickerSlider5Increase",
+          ["<Home>"] = "<Plug>ColorPickerSlider5Decrease"
+        }
+      })
+    end
+
+  }
 }
 
 require 'nvim-treesitter.configs'.setup{
