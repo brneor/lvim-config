@@ -99,10 +99,12 @@ lvim.builtin.lualine.sections.lualine_y = {
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  "dart",
+  "fish",
+  "html",
   "javascript",
   "json",
   "lua",
-  "python",
   "typescript",
   "tsx",
   "css",
@@ -319,7 +321,6 @@ lvim.plugins = {
       require("flutter-tools").setup{}
     end
   },
-  { "dart-lang/dart-vim-plugin" },
 
   -- Remembers last place on file
   {
