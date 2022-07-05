@@ -30,6 +30,8 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern"
 lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
 -- lvim.builtin.which_key.mappings["gg"] = {"<cmd>GitUi<CR>", "GitUi"}
 
+lvim.builtin.which_key.mappings["t"] = {"<cmd>Twilight<CR>", "Toggle twilight"}
+
 -- vim-flutter keymappings
 lvim.builtin.which_key.mappings["u"] = {
   name = "+Flutter",
@@ -121,7 +123,8 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.rainbow.enable = true
 
 -- generic LSP settings
 
@@ -353,18 +356,35 @@ lvim.plugins = {
         }
       })
     end
-
-  }
-}
-
-require 'nvim-treesitter.configs'.setup{
-  highlight = {
-
   },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil
+
+  -- Shades inactive windows
+  {
+    "sunjon/Shade.nvim",
+    config = function ()
+      require("shade").setup({
+        overlay_opacity = 60,
+        keys = {
+          toggle = "<C-s>"
+        }
+      })
+    end
+  },
+
+  -- Dims the portion of code you're not working on
+  {
+    "folke/twilight.nvim",
+    config = function ()
+      require("twilight").setup()
+    end
+  },
+
+  -- Autoclose and autorename html tag
+  {
+    "windwp/nvim-ts-autotag",
+    config = function ()
+      require("nvim-ts-autotag").setup()
+    end
   }
 }
 
