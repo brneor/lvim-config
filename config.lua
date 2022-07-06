@@ -209,7 +209,16 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- Additional Plugins
 lvim.plugins = {
-  { "rebelot/kanagawa.nvim" },
+  {
+    "rebelot/kanagawa.nvim",
+    config = function ()
+      require("kanagawa").setup({
+        commentStyle = { italic = false },
+        keywordStyle = { italic = false },
+        variablebuiltinStyle = { italic = false },
+      })
+    end
+  },
   -- Neovim motions on speed!
   {
     "phaazon/hop.nvim",
