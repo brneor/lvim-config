@@ -418,3 +418,4 @@ create_augroups(autocmds)
 
 -- Load private configs
 require("private-config")
+require("headers")
