@@ -11,8 +11,8 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "onedarker"
--- lvim.colorscheme = "darkplus"
+lvim.colorscheme = "kanagawa"
+-- lvim.colorscheme = "onedarker"
 
 -- vim options
 vim.opt.relativenumber = true
@@ -209,9 +209,7 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- Additional Plugins
 lvim.plugins = {
-  -- VSCode theme
-  { "martinsione/darkplus.nvim" },
-
+  { "rebelot/kanagawa.nvim" },
   -- Neovim motions on speed!
   {
     "phaazon/hop.nvim",
