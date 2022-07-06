@@ -213,7 +213,7 @@ lvim.plugins = {
   -- Neovim motions on speed!
   {
     "phaazon/hop.nvim",
-    branch = "v1",
+    branch = "v2",
     event = "BufRead",
     config = function ()
       require("hop").setup {
