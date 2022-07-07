@@ -45,6 +45,17 @@ lvim.builtin.which_key.mappings["u"] = {
 vim.keymap.set("n", "<C-c>", "<cmd>PickColor<cr>", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-c>", "<cmd>PickColorInsert<cr>", { noremap = true, silent = true })
 
+-- Focus windows
+lvim.keys.normal_mode["<C-Up>"] = "<C-w>k"
+lvim.keys.normal_mode["<C-Down>"] = "<C-w>j"
+lvim.keys.normal_mode["<C-Left>"] = "<C-w>h"
+lvim.keys.normal_mode["<C-Right>"] = "<C-w>l"
+
+lvim.keys.normal_mode["<M-n>"] = "<C-w>h"
+lvim.keys.normal_mode["<M-e>"] = "<C-w>j"
+lvim.keys.normal_mode["<M-i>"] = "<C-w>k"
+lvim.keys.normal_mode["<M-o>"] = "<C-w>l"
+
 -- Other vim settings
 vim.g.vim_matchtag_enable_by_default = 1
 vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
