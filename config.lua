@@ -149,9 +149,8 @@ lvim.builtin.treesitter.rainbow.enable = true
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver" })
-local js_opts = {} -- check the lspconfig documentation for a list of all possible options
-require("lvim.lsp.manager").setup("eslint", js_opts)
+-- Adiciona o eslint para melhor suporte a projetos js (mantém o tsserver)
+require("lvim.lsp.manager").setup("eslint", {})
 
 -- Emmet everywhere (hopefuly)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
