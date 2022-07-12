@@ -18,6 +18,7 @@ lvim.colorscheme = "kanagawa"
 vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.mouse=""
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
