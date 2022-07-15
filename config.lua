@@ -42,6 +42,14 @@ lvim.builtin.which_key.mappings["u"] = {
   R = { "<cmd>FlutterRestart<cr>", "Restart" },
 }
 
+-- New file keymappings
+lvim.builtin.which_key.mappings["n"] = {
+  name = "+New buffer",
+  n = { "<cmd>enew<cr>", "Same window" },
+  e = { "<cmd>vnew<cr>", "Split vertical" },
+  i = { "<cmd>new<cr>", "Split horizontal" },
+}
+
 -- Color picker keymappings
 vim.keymap.set("n", "<C-c>", "<cmd>PickColor<cr>", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-c>", "<cmd>PickColorInsert<cr>", { noremap = true, silent = true })
@@ -237,10 +245,12 @@ lvim.plugins = {
       }
       vim.api.nvim_set_keymap("", "s", "<cmd>HopChar2<cr>", { silent = true })
       vim.api.nvim_set_keymap("", 'l', "<cmd>HopLine<cr>", { silent = true })
-      vim.api.nvim_set_keymap("", 'f', "<cmd>HopWordCurrentLineAC<cr>", { silent = true })
-      vim.api.nvim_set_keymap("", 'F', "<cmd>HopWordCurrentLineBC<cr>", { silent = true })
-      vim.api.nvim_set_keymap("", "t", "<cmd>HopChar1CurrentLineAC<cr>", { silent = true })
-      vim.api.nvim_set_keymap("", "T", "<cmd>HopChar1CurrentLineBC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", 'f', "<cmd>:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR,current_line_only = true})<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", 'F', "<cmd><:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,current_line_only = true})cr>", { silent = true })
+      vim.api.nvim_set_keymap("", '<C-w>', "<cmd>HopWordCurrentLineAC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", '<C-b>', "<cmd>HopWordCurrentLineBC<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", "t", "<cmd>:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR,current_line_only = true,hint_offset = -1})<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", "T", "<cmd>:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,current_line_only = true,hint_offset = -1})<cr>", { silent = true })
     end,
   },
 
@@ -280,9 +290,9 @@ lvim.plugins = {
     setup = function()
       vim.g.indentLine_enabled = 1
       vim.g.indent_blankline_char = "▏"
-      vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
-      vim.g.indent_blankline_buftype_exclude = {"terminal"}
-      vim.g.indent_blankline_show_trailing_blankline_indent = true
+      vim.g.indent_blankline_filetype_exclude = {"help", "dashboard", "alpha", "packer", "NvimTree"}
+      vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
+      vim.g.indent_blankline_show_trailing_blankline_indent = false
       vim.g.indent_blankline_show_first_indent_level = true
     end
   },
