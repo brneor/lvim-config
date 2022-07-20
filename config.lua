@@ -65,6 +65,9 @@ lvim.keys.normal_mode["<M-e>"] = "<C-w>j"
 lvim.keys.normal_mode["<M-i>"] = "<C-w>k"
 lvim.keys.normal_mode["<M-o>"] = "<C-w>l"
 
+-- Insere quebra de linha sem sair do normal mode
+lvim.keys.normal_mode["<Enter>"] = "o<Esc>"
+
 -- Other vim settings
 vim.g.vim_matchtag_enable_by_default = 1
 vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
@@ -246,7 +249,7 @@ lvim.plugins = {
       vim.api.nvim_set_keymap("", "s", "<cmd>HopChar2<cr>", { silent = true })
       vim.api.nvim_set_keymap("", 'l', "<cmd>HopLine<cr>", { silent = true })
       vim.api.nvim_set_keymap("", 'f', "<cmd>:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR,current_line_only = true})<cr>", { silent = true })
-      vim.api.nvim_set_keymap("", 'F', "<cmd><:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,current_line_only = true})cr>", { silent = true })
+      vim.api.nvim_set_keymap("", 'F', "<cmd>:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,current_line_only = true})<cr>", { silent = true })
       vim.api.nvim_set_keymap("", '<C-w>', "<cmd>HopWordCurrentLineAC<cr>", { silent = true })
       vim.api.nvim_set_keymap("", '<C-b>', "<cmd>HopWordCurrentLineBC<cr>", { silent = true })
       vim.api.nvim_set_keymap("", "t", "<cmd>:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR,current_line_only = true,hint_offset = -1})<cr>", { silent = true })
