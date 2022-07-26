@@ -32,7 +32,6 @@ lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
 -- lvim.builtin.which_key.mappings["gg"] = {"<cmd>GitUi<CR>", "GitUi"}
 
 lvim.builtin.which_key.mappings["t"] = {"<cmd>Twilight<CR>", "Toggle twilight"}
-lvim.builtin.which_key.mappings["i"] = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Line diagnostic" }
 
 -- vim-flutter keymappings
 lvim.builtin.which_key.mappings["u"] = {
