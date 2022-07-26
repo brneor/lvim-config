@@ -32,6 +32,7 @@ lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
 -- lvim.builtin.which_key.mappings["gg"] = {"<cmd>GitUi<CR>", "GitUi"}
 
 lvim.builtin.which_key.mappings["t"] = {"<cmd>Twilight<CR>", "Toggle twilight"}
+lvim.builtin.which_key.mappings["i"] = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Line diagnostic" }
 
 -- vim-flutter keymappings
 lvim.builtin.which_key.mappings["u"] = {
@@ -51,8 +52,8 @@ lvim.builtin.which_key.mappings["n"] = {
 }
 
 -- Color picker keymappings
-vim.keymap.set("n", "<C-c>", "<cmd>PickColor<cr>", { noremap = true, silent = true })
-vim.keymap.set("i", "<C-c>", "<cmd>PickColorInsert<cr>", { noremap = true, silent = true })
+lvim.keys.normal_mode["<C-c>"] = "<cmd>PickColor<cr>"
+lvim.keys.insert_mode["<C-c>"] = "<cmd>PickColorInsert<cr>"
 
 -- Focus windows
 lvim.keys.normal_mode["<C-Up>"] = "<C-w>k"
@@ -410,6 +411,27 @@ lvim.plugins = {
     "windwp/nvim-ts-autotag",
     config = function ()
       require("nvim-ts-autotag").setup()
+    end
+  },
+
+  -- Search and replace
+  {
+    "windwp/nvim-spectre",
+    event = "BufRead",
+    -- TODO: melhorar os keybindings desse plugin
+    config = function()
+      require("spectre").setup()
+    end,
+  },
+
+  -- Better LSP reports
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function ()
+      require("lsp_lines").setup()
+      vim.diagnostic.config({
+        virtual_text = false
+      })
     end
   }
 }
