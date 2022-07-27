@@ -45,9 +45,11 @@ lvim.builtin.which_key.mappings["u"] = {
 -- New file keymappings
 lvim.builtin.which_key.mappings["n"] = {
   name = "+New buffer",
-  n = { "<cmd>enew<cr>", "Same window" },
-  e = { "<cmd>vnew<cr>", "Split vertical" },
-  i = { "<cmd>new<cr>", "Split horizontal" },
+  n = { "<cmd>enew<cr>", "New tab" },
+  e = { "<cmd>vnew<cr>", "New vertical" },
+  i = { "<cmd>new<cr>", "New horizontal" },
+  v = { "<cmd>vs<cr>", "Split vertical" },
+  h = { "<cmd>split<cr>", "Split horizontal" },
 }
 
 -- Color picker keymappings
