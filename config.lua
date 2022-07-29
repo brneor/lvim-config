@@ -434,6 +434,14 @@ lvim.plugins = {
         virtual_text = false
       })
     end
+  },
+
+  -- Prevent the cursor from moving when using shift and filter actions
+  {
+   "gbprod/stay-in-place.nvim",
+    config = function()
+      require("stay-in-place").setup()
+    end
   }
 }
 
