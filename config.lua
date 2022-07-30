@@ -28,8 +28,25 @@ lvim.leader = "space"
 lvim.builtin.which_key.mappings["a"] = { "<cmd>HopWord<cr>", "Hop to word" }
 lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern" }
 
-lvim.builtin.which_key.mappings["gg"] = {"<cmd>LazyGit<CR>", "LazyGit"}
--- lvim.builtin.which_key.mappings["gg"] = {"<cmd>GitUi<CR>", "GitUi"}
+-- Redeclare all Git keys bc I couldn't just delete gj and gk
+lvim.builtin.which_key.mappings["g"] = {
+  name = "Git",
+  -- g = {"<cmd>GitUi<CR>", "GitUi"},
+  g = {"<cmd>LazyGit<CR>", "LazyGit"},
+  e = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+  i = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+  l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+  p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+  r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+  R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+  s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+  u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
+  o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+  b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+  c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+  C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" },
+  d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Git Diff" }
+}
 
 lvim.builtin.which_key.mappings["t"] = {"<cmd>Twilight<CR>", "Toggle twilight"}
 
