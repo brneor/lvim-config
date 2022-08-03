@@ -448,7 +448,8 @@ lvim.plugins = {
     config = function ()
       require("lsp_lines").setup()
       vim.diagnostic.config({
-        virtual_text = false
+        virtual_text = false,
+        virtual_lines = { only_current_line = true }
       })
     end
   },
@@ -491,6 +492,20 @@ local autocmds = {
   }
 }
 create_augroups(autocmds)
+
+-- Better copy and paste on WSL (needs win32yank.exe binary)
+if vim.fn.has "wsl" == 1 then
+  vim.g.clipboard = {
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+  }
+end
 
 -- Load private configs
 require("private-config")
