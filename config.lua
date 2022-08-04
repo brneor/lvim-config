@@ -442,18 +442,6 @@ lvim.plugins = {
     end,
   },
 
-  -- Better LSP reports
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function ()
-      require("lsp_lines").setup()
-      vim.diagnostic.config({
-        virtual_text = false,
-        virtual_lines = { only_current_line = true }
-      })
-    end
-  },
-
   -- Prevent the cursor from moving when using shift and filter actions
   {
    "gbprod/stay-in-place.nvim",
