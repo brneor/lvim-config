@@ -96,6 +96,10 @@ vim.g.vim_matchtag_enable_by_default = 1
 vim.g.vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.vue,*.svelte,*.jsp,*.tpl'
 
 -- unmap a default keymapping
+-- My Esc key is accessible enough, thanks
+vim.keymap.del("i", "jj")
+vim.keymap.del("i", "kj")
+vim.keymap.del("i", "jk")
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
