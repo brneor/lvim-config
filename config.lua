@@ -37,6 +37,7 @@ lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
   -- g = {"<cmd>GitUi<CR>", "GitUi"},
   g = {"<cmd>LazyGit<CR>", "LazyGit"},
+  h = {"<cmd>LazyGitFilterCurrentFile<CR>", "LazyGit history"},
   e = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
   i = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
   l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -503,6 +504,5 @@ if vim.fn.has "wsl" == 1 then
   }
 end
 
--- Load private configs
-require("private-config")
-require("headers")
+-- Load custom config files
+require("dashboad")
