@@ -210,8 +210,8 @@ lvim.builtin.alpha.dashboard.section.header.val = Headers[math.random(#Headers)]
 local function footer()
   local date = os.date("  %d/%m/%Y ")
   local time = os.date("  %H:%M:%S ")
-  -- TODO: contar os plugins e mostrar em tela
-  local plugins = " " --"  " .. #vim.tbl_keys(packer_plugins) .. " plugins "
+  local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/lunarvim/site/pack/packer/start", "*", 0, 1)) + vim.fn.len(vim.fn.globpath("~/.local/share/lunarvim/site/pack/packer/opt", "*", 0, 1))
+  local plugins = "  " .. plugins_count .. " plugins "
 
   local v = vim.version()
   local version = "  v" .. v.major .. "." .. v.minor .. "." .. v.patch
