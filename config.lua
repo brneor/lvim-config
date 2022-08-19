@@ -29,8 +29,8 @@ lvim.builtin.which_key.mappings["a"] = { "<cmd>HopWord<cr>", "Hop to word" }
 lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern" }
 
 -- reenable L and H to move between buffers (https://github.com/LunarVim/LunarVim/commit/45f9825d1e666890ed37baf15a14707ae40e5cff)
-lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+-- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+-- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 
 -- Redeclare all Git keys bc I couldn't just delete gj and gk
 lvim.builtin.which_key.mappings["g"] = {
@@ -179,6 +179,8 @@ lvim.builtin.treesitter.rainbow.enable = true
 
 -- generic LSP settings
 
+-- Desabilita o destaque estranho de termos
+lvim.lsp.document_highlight = false
 -- ---@usage disable automatic installation of servers
 -- lvim.lsp.automatic_servers_installation = false
 
@@ -271,11 +273,12 @@ lvim.plugins = {
     event = "BufRead",
     config = function ()
       require("hop").setup {
-        keys = 'tnplvmsefucriwyxaoqz',
-        multi_windows = true
+        keys = 'tnplvmdhsefucriwyxao',
+        multi_windows = false
       }
       vim.api.nvim_set_keymap("", "s", "<cmd>HopChar2<cr>", { silent = true })
       vim.api.nvim_set_keymap("", 'l', "<cmd>HopLine<cr>", { silent = true })
+      vim.api.nvim_set_keymap("", 'L', "<cmd>HopLineStart<cr>", { silent = true })
       vim.api.nvim_set_keymap("", 'f', "<cmd>:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR,current_line_only = true})<cr>", { silent = true })
       vim.api.nvim_set_keymap("", 'F', "<cmd>:lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,current_line_only = true})<cr>", { silent = true })
       vim.api.nvim_set_keymap("", '<C-w>', "<cmd>HopWordCurrentLineAC<cr>", { silent = true })
