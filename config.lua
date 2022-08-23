@@ -28,9 +28,11 @@ lvim.leader = "space"
 lvim.builtin.which_key.mappings["a"] = { "<cmd>HopWord<cr>", "Hop to word" }
 lvim.builtin.which_key.mappings["r"] = { "<cmd>HopPattern<cr>", "Hop to pattern" }
 
--- reenable L and H to move between buffers (https://github.com/LunarVim/LunarVim/commit/45f9825d1e666890ed37baf15a14707ae40e5cff)
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+lvim.builtin.which_key.mappings["F"] = { "<cmd>lua require('spectre').open()<cr>", "Find and replace" }
+
+-- Enable Alt-L and Alt-H to move between buffers (https://github.com/LunarVim/LunarVim/commit/45f9825d1e666890ed37baf15a14707ae40e5cff)
+lvim.keys.normal_mode["<M-l>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<M-h>"] = ":BufferLineCyclePrev<CR>"
 
 -- Redeclare all Git keys bc I couldn't just delete gj and gk
 lvim.builtin.which_key.mappings["g"] = {
